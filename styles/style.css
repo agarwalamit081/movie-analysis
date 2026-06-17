@@ -1,0 +1,332 @@
+/* =========================================================================
+   Movie Stats App — Cinematic Dark Theme
+   Charcoal background, gold accents, large poster imagery
+   ========================================================================= */
+
+:root {
+    --bg-primary:    #f5f5f7;   /* was #0b0d12 */
+    --bg-secondary:  #ffffff;   /* was #141821 */
+    --bg-tertiary:   #e8e8ed;   /* was #1c2230 */
+    --bg-card:       #ffffff;   /* was #1a1f2c */
+    --bg-card-hover: #f0f0f5;   /* was #232a3a */
+    --text-primary:  #f5f5f7;
+    --text-secondary:#b8bfc9;
+    --text-muted:    #6b7280;
+    --accent-gold:   #f5c518;
+    --accent-gold-dim:#8a6f1a;
+    --accent-red:    #e63946;
+    --accent-green:  #2ecc71;
+    --border:        #2a3140;
+    --shadow:        0 8px 24px rgba(0,0,0,0.6);
+    --radius:        14px;
+    --radius-sm:     8px;
+}
+
+/* ----- Base ----- */
+.stApp {
+    background: linear-gradient(180deg, #0b0d12 0%, #141821 100%);
+    color: var(--text-primary);
+    font-family: 'Inter', 'Segoe UI', -apple-system, sans-serif;
+}
+
+.stApp h1, .stApp h2, .stApp h3 {
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.stApp h1 { font-size: 2.2rem; }
+.stApp h2 { font-size: 1.6rem; margin-top: 1.5rem; }
+.stApp h3 { font-size: 1.2rem; color: var(--accent-gold); }
+
+/* ----- Header / Title bar ----- */
+.app-header {
+    background: linear-gradient(135deg, rgba(245,197,24,0.08) 0%, rgba(245,197,24,0.02) 100%);
+    border-left: 4px solid var(--accent-gold);
+    border-radius: var(--radius-sm);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.app-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    background: linear-gradient(90deg, var(--accent-gold) 0%, #fff 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.app-header .subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-top: 0.3rem;
+}
+
+/* ----- KPI tiles ----- */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin: 1rem 0 1.5rem 0;
+}
+.kpi-tile {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.2rem;
+    box-shadow: var(--shadow);
+    transition: transform .15s ease, border-color .15s ease;
+}
+.kpi-tile:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-gold);
+}
+.kpi-tile .label {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+}
+.kpi-tile .value {
+    color: var(--accent-gold);
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+.kpi-tile .sub {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    margin-top: 0.3rem;
+}
+
+/* ----- Movie poster card ----- */
+.movie-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform .2s ease, box-shadow .2s ease;
+    border: 1px solid var(--border);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(245,197,24,0.15);
+    border-color: var(--accent-gold);
+}
+.movie-card .poster {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    background: var(--bg-tertiary);
+    display: block;
+}
+.movie-card .poster-fallback {
+    width: 100%;
+    aspect-ratio: 2/3;
+    background: linear-gradient(135deg, #2a3140 0%, #141821 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 1rem;
+}
+.movie-card .body {
+    padding: 0.9rem 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.movie-card .title {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.3;
+    /* clamp to 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.movie-card .meta {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.movie-card .rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--accent-gold);
+    color: #0b0d12;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+.movie-card .genre-pill {
+    display: inline-block;
+    background: rgba(245,197,24,0.12);
+    color: var(--accent-gold);
+    border: 1px solid rgba(245,197,24,0.3);
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 0.72rem;
+    margin-right: 4px;
+    margin-top: 4px;
+}
+
+/* ----- Section headings inside tabs ----- */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 2rem 0 1rem 0;
+}
+.section-title::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 22px;
+    background: var(--accent-gold);
+    border-radius: 2px;
+}
+.section-title h2 { margin: 0; }
+
+/* ----- Tables ----- */
+.stDataFrame, .stTable {
+    color: var(--text-primary);
+}
+.stDataFrame table, .stTable table {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+}
+.stDataFrame th, .stTable th {
+    background: var(--bg-tertiary) !important;
+    color: var(--accent-gold) !important;
+    border-bottom: 2px solid var(--accent-gold-dim) !important;
+    font-weight: 600 !important;
+}
+.stDataFrame td, .stTable td {
+    color: var(--text-secondary) !important;
+    border-top: 1px solid var(--border) !important;
+}
+
+/* ----- Sidebar ----- */
+section[data-testid="stSidebar"] {
+    background: var(--bg-secondary) !important;
+    border-right: 1px solid var(--border);
+}
+section[data-testid="stSidebar"] .stMarkdown h1,
+section[data-testid="stSidebar"] .stMarkdown h2,
+section[data-testid="stSidebar"] .stMarkdown h3 {
+    color: var(--accent-gold);
+}
+
+/* ----- Streamlit widgets (sliders, multiselect, etc.) ----- */
+.stSelectbox > div > div,
+.stMultiSelect > div > div {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border) !important;
+}
+
+/* Buttons */
+.stButton > button {
+    background: var(--accent-gold) !important;
+    color: #0b0d12 !important;
+    border: none !important;
+    font-weight: 600 !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 0.5rem 1.4rem !important;
+    transition: transform .1s ease, opacity .15s ease !important;
+}
+.stButton > button:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+}
+
+/* ----- Tabs ----- */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    padding: 6px;
+}
+.stTabs [data-baseweb="tab"] {
+    color: var(--text-secondary) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 8px 18px !important;
+    font-weight: 500 !important;
+}
+.stTabs [aria-selected="true"] {
+    background: var(--accent-gold) !important;
+    color: #0b0d12 !important;
+}
+.stTabs [data-baseweb="tab-highlight"] {
+    background-color: var(--accent-gold) !important;
+}
+.stTabs [data-baseweb="tab-border"] {
+    display: none !important;
+}
+
+/* ----- Alert / callout boxes ----- */
+.callout {
+    background: var(--bg-card);
+    border-left: 4px solid var(--accent-gold);
+    border-radius: var(--radius-sm);
+    padding: 0.9rem 1.2rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+}
+.callout-info    { border-left-color: #4a9eff; }
+.callout-success { border-left-color: var(--accent-green); }
+.callout-warning { border-left-color: var(--accent-gold); }
+.callout-danger  { border-left-color: var(--accent-red); }
+.callout strong { color: var(--text-primary); }
+
+/* ----- Metrics (Streamlit st.metric override) ----- */
+.stMetric {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.8rem 1rem !important;
+}
+.stMetric label { color: var(--text-muted) !important; font-size: 0.78rem !important; }
+.stMetric value { color: var(--accent-gold) !important; font-size: 1.5rem !important; font-weight: 700 !important; }
+
+/* ----- Plotly chart container ----- */
+.stPlotlyChart, .stPyplotFigure {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px;
+}
+
+/* ----- Footer ----- */
+.app-footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+/* ----- Utility ----- */
+.text-muted { color: var(--text-muted); }
+.text-gold  { color: var(--accent-gold); }
+.text-secondary { color: var(--text-secondary); }
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 1.5rem 0;
+}
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
